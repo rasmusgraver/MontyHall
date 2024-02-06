@@ -24,9 +24,7 @@ function klikkdor(event) {
     // la brukeren trykke en eller flere ganger: kanTrykke = false;
 
     // Hvilken dør er dette?
-    // Hadde denne lange måten å gjøre det på (som ikke trenger noen "data-index" property):
-    // const door_index = Array.from(      door.parentElement.parentElement.children    ).indexOf(door.parentElement);
-    // Eller ved å bruke "data-index" property (som ligger på "parent elementet"):
+    // Bruker "data-index" property (som ligger på "parent elementet"):
     const door_index = door.parentElement.dataset.index
     console.log("Dør nummer", door_index, "VinnerLuke", vinnerLuke)
     if (door_index == vinnerLuke) {
