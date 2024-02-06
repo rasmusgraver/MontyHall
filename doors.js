@@ -26,7 +26,6 @@ function klikkdor(event) {
   if (kanTrykke) {
     // Finner døren som ble trykket ved hjelp av "event.target":
     const door = event.target
-    let vinner = false
 
     // Ikke la brukeren åpne flere dører:
     kanTrykke = false
@@ -35,9 +34,11 @@ function klikkdor(event) {
     // Bruker "data-index" property (som ligger på "parent elementet"):
     const door_index = door.parentElement.dataset.index
     console.log("Dør nummer", door_index, "VinnerTall", vinnerTall)
+    let lydfil = "goat"
     if (door_index == vinnerTall) {
-      vinner = true
+      lydfil = "success"
       document.getElementById("outputText").innerHTML = "DU VANT! DU VANT!"
+      document.body.style.backgroundColor = "green"
     }
 
     // Åpne døra "litt"
@@ -46,17 +47,12 @@ function klikkdor(event) {
     setTimeout(opendoor, 800, door)
 
     // Spill lyden med en gang
-    let audio = null
-    if (vinner) {
-      audio = new Audio("media/success.mp3")
-    } else {
-      audio = new Audio("media/goat.mp3")
-    }
+    const audio = new Audio("media/" + lydfil + ".mp3")
     audio.play()
   }
 }
 
-function opendoor(door, vinner) {
+function opendoor(door) {
   // Åpne døra helt
   door.src = "media/open.png"
 }
